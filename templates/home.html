@@ -1,16 +1,51 @@
-<html>
+<!DOCTYPE html>
+<html>  
     <head>
-        <title>Crime Map</title>
-    </head>
-    <body>
-        <h1>Crime Map</h1>
-        <form action="/add" method="POST">
-            <input type="text" name="userinput">
-            <input type="submit" value="Submit">
-        </form>
-        <a href="/clear">clear</a>
-        {% for userinput in data %}
-            <p>{{userinput}}</p>
-        {% endfor %}
-    </body>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <title>北京地图</title>
+        <style type="text/css">
+            html {height: auto;}
+            body {height: auto;margin: 0;padding: 0;}
+            #map_canvas {width:1000px;height: 500px;position: absolute;}
+        </style>
+    <script type="text/javascript" src="http://api.go2map.com/maps/js/api_v2.5.1.js"></script>
+    <script type="text/javascript">
+     /**
+    * 加载指定城市区域的地图
+    */
+    var map;
+    var marker;
+    function initialize() {
+        var myLatlng = new sogou.maps.LatLng(39.992792,116.326142);
+        var myOptions = {
+            zoom: 12,
+            center: myLatlng,
+            mapTypeId: sogou.maps.MapTypeId.ROADMAP
+        }
+        map = new sogou.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+        sogou.maps.event.addListener(map, 'click', function(event) {
+            //获取点击位置的坐标
+            //alert(event.point)
+            placeMarker(event.point);
+          });
+  }
+
+  function placeMarker(location) {
+    //var clickedLocation = location;
+    if (marker){
+        marker.setPosition(location);
+    }else{
+        marker = new sogou.maps.Marker({
+        position: location,
+        map: map
+    })};
+    map.setCenter(location);
+}
+</script>
+</head>
+<body onload="initialize()">
+  <div id="map_canvas"></div>
+</body>
 </html>
