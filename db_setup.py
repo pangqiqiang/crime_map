@@ -8,13 +8,13 @@ try:
         sql = "CREATE DATABASE IF NOT EXISTS crimemap"
         cursor.execute(sql)
         sql = """CREATE TABLE IF NOT EXISTS crimemap.crimes(
-id int NOT NULL AUTO_INCRRMENT,
+id int NOT NULL AUTO_INCREMENT,
 latitude FLOAT(10, 6),
 longitude FLOAT(10, 6),
 data DATETIME,
 category VARCHAR(50),
 description VARCHAR(1000),
-updateed_at TIMESTAMP,
+updated_at TIMESTAMP,
 PRIMARY KEY (id)
 )"""
         cursor.execute(sql)
