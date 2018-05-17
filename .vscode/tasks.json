@@ -15,6 +15,10 @@
                 "reveal": "always",
                 "focus": false,
                 "panel": "shared"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
             }
         }
     ]
