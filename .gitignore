@@ -1,3 +1,4 @@
 /dbconfig.py
 /db_setup.py
 *.pyc
+/__pycache__/*.pyc
