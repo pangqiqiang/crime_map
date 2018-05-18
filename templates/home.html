@@ -4,11 +4,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
         <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
         <title>北京地图</title>
-        <style type="text/css">
-            html {height: auto;}
-            body {height: auto;margin: 0;padding: 0;}
-            #map_canvas {width:1000px;height: 500px;position: absolute;}
-        </style>
+        <link type="text/css" rel="stylesheet" href="{{url_for('static',
+filename='css/style.css') }}" />
     <script type="text/javascript" src="http://api.go2map.com/maps/js/api_v2.5.1.js"></script>
     <script type="text/javascript">
      /**
@@ -42,10 +39,33 @@
         map: map
     })};
     map.setCenter(location);
+    document.getElementById('latitude').value = location.x;
+    document.getElementById('longitude').value = location.y;
 }
 </script>
 </head>
 <body onload="initialize()">
-  <div id="map_canvas"></div>
+  <h1>CrimeMap</h1>
+  <div id="map_canvas" style="width:70%; height:440px"></div>
+  <div id="newcrimeform">
+    <h2>Submit new crime</h2>
+<form action="/submitcrime" method="POST">
+    <label for="category">Category</label>
+    <select name="category" id="category">
+        <option value="mugging">Mugging</option>
+        <option value="breakin">Break-in</option>
+    </select>
+    <label for="date">Date</label>
+    <input name="date" id="date" type="date">
+    <label for="latitude">Latitude</label>
+    <input name="latitude" id="latitude" type="text">
+    <label for="longitude">Longitude</label>
+    <input name="longitude" id="longitude" type="text">
+    <label for="description">Description</label>
+    <textarea name="description" id="description" 
+    placeholder="A brief but detaileddescription of the crime"></textarea>
+    <input type="submit" value="Submit">
+</form>
+</div>
 </body>
 </html>
