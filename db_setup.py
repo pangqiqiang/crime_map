@@ -11,7 +11,7 @@ try:
 id int NOT NULL AUTO_INCREMENT,
 latitude FLOAT(10, 6),
 longitude FLOAT(10, 6),
-data DATETIME,
+date DATETIME,
 category VARCHAR(50),
 description VARCHAR(1000),
 updated_at TIMESTAMP,
